@@ -1,21 +1,36 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from . import models
+from .models import Book
 
-# 1. about_me view
+def first_lesson_django(request):
+    if request.method == 'GET':
+        return HttpResponse('🐍Hello DJANGO TEMPLATES 🐍')
+
+def picture_view(request):
+    if request.method == 'GET':
+        return HttpResponse("<img src = 'https://itproger.com/img/news/1592990176.jpg'  >")
+
 def about_me(request):
-    # Замените на информацию о себе
     info = "Меня зовут Айдар, я ученик группы46-1B."
     return HttpResponse(info)
 
-# 2. about_my_pets view
 def about_my_pets(request):
-    # Укажите имя и путь к фото вашего питомца
     pet_name = "Барсик"
     pet_photo_url = "/templates/pet1.jpg"
-    return render(request, 'about_my_pets.html', {'pet_name': Барсик, 'pet_photo_url': pet1})
+    return render(request, 'about_my_pets.html', {'pet_name':pet_name, 'pet_photo_url': pet_photo_url})
 
-# 3. system_time view
 def system_time(request):
     current_time = datetime.now()
     return HttpResponse(f"Системная дата и время: {current_time}")
+
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'book_list.html', {'books': books})
+
+def book_detail(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render(request, 'book_detail.html', {'book': book})
