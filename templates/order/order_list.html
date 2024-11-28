@@ -1,0 +1,26 @@
+{% include "components/header.html" %}
+
+<div class="container mt-4 content">
+    <div class="row justify-content-center">
+        {% for i in orders %}
+        <!-- Пример карточки книги -->
+        <div class="col-md-4 mb-4">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.name }}</h5>
+                    <p class="card-text">{{ i.phone_number }}</p>
+                    <p class="card-text">{{ i.email }}</p>
+                    <p class="card-text">{{ i.book }}</p>
+                    <a href= "{% url 'order_detail' i.id %}" class="btn btn-primary">Подробнее</a>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Добавьте дополнительные карточки книг здесь -->
+    </div>
+</div>
+
+
+
+{% include "components/footer.html" %}

@@ -1,0 +1,25 @@
+{% include "components/header.html" %}
+
+<!-- Контент с информацией о книге -->
+<div class="container mt-4">
+    <div class="book-card">
+        <div class="card">
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ order.name }}</h5>
+                <p class="card-text">{{ order.phone_number }}</p>
+                <p><strong>Цена:</strong> ${{ order.email }}</p>
+                <p><strong>Дата выхода:</strong> {{ order.book }}</p>
+                
+                <a href= "{% url 'delete_order' order.id %}" class="btn btn-primary">Удалить</a>
+                <a href= "{% url 'update_order' order.id %}" class="btn btn-primary">Изменить</a>
+            </div>
+        </div>
+    </div>
+
+
+
+   
+
+
+{% include "components/footer.html" %}
